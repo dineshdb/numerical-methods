@@ -8,9 +8,10 @@ float f(float x){
 }
 
 class Indeterminate{};
+class Timeout{};
 
 float secant(float (*f)(float), float tolerance = 0.000001, float a = 1, float b =2 ){
-	float c;
+	float c, i = 0;
 	do{
 		if(f(b) == f(a)){
 			throw Indeterminate();
@@ -19,10 +20,21 @@ float secant(float (*f)(float), float tolerance = 0.000001, float a = 1, float b
 		a = b;
 		b = c;
 
+		if( i > 1000){
+			throw Timeout();
+		}
+		i++;
+
 	} while(fabs(f(c)) < tolerance);
 	return c;
 }
 int main(){
-    float ans = secant (f);
-    cout << "f(x) = sinx + 3x^2, x =" << ans << endl;
+    try{
+        float ans = secant (f);
+        cout << "f(x) = sinx + 3x^2, x =" << ans << endl;
+    } catch( Indeterminate &e){
+	cout << " Indeterminate values provided for a and b." << endl;
+    } catch ( Timeout &e){
+	cout << "Timeout : Program ran for too much time." << endl;
+    }
 }
