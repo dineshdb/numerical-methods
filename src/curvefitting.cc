@@ -14,6 +14,7 @@ void curveFittingLinear(float d[][2], float n, float *a, float *b){
 
 void curveFitting(float d[][2], float n, float *a, float *b, bool isExpo){
     float sx = 0, sy = 0, sx2 = 0, sxy = 0;
+
     for(int i=0;i < n;i++){
         float x = d[i][0];
 	float y = d[i][1];
