@@ -33,8 +33,8 @@ int main(){
         float ans = secant (f);
         cout << "f(x) = sinx + 3x^2, x =" << ans << endl;
     } catch( Indeterminate &e){
-	cout << " Indeterminate values provided for a and b." << endl;
+	cout << " Indeterminate values reached for a and b." << endl;
     } catch ( Timeout &e){
-	cout << "Timeout : Program ran for too much time." << endl;
+	cout << "Timeout : Program ran for too much time. Try increasing timeout or decreasing tolerance." << endl;
     }
 }
